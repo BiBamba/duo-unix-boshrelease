@@ -1,0 +1,5 @@
+check process duo-unix
+  with pidfile /var/vcap/sys/run/duo-unix/duo_unix.pid
+  start program "/var/vcap/jobs/duo-unix/bin/ctl start"
+  stop program "/var/vcap/jobs/duo-unix/bin/ctl stop"
+  group vcap
