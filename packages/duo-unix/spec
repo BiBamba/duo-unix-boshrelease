@@ -1,0 +1,9 @@
+---
+name: duo-unix
+
+dependencies:
+- libssl-dev
+- libpam # libpam-dev
+
+files:
+- duo-unix/duo_unix-1.12.1.tar.gz  # https://dl.duosecurity.com/duo_unix-latest.tar.gz
