@@ -1,8 +1,28 @@
 ---
 name: duo-unix
+  description: |
+    Duo adds a two-factor authentication for ssh on your Linux machine.
 
-templates: {}
+templates: 
+  config/config.yml.erb: config/config.yml
+  bin/ctl.erb: bin/ctl
 
 packages: []
+  - duo-unix
+  - libpam
+  - libssl
 
-properties: {}
+properties: 
+  duo.ikey:
+    description: The integration key for your duo
+  duo.skey:
+    description: The integration secret key for your duo
+  duo.host: 
+    description: The API hostname for your duo
+  duo.failmode:
+    description: On service or configuration errors that prevent Duo authentication,
+      fail "safe" (allow access) or "secure" (deny access). The default is "safe"
+  duo.pushinfo:
+     description: Include information such as command to be executed in the Duo message.
+  duo.autopush:
+    description: Duo Unix will automatically send a push login request to user's phone.

@@ -1,0 +1,45 @@
+#!/bin/bash
+
+RUN_DIR=/var/vcap/sys/run/duo-unix
+LOG_DIR=/var/vcap/sys/log/duo-unix
+JOB_DIR=/var/vcap/jobs/duo-unix
+PACKAGE=/var/vcap/packages/duo-unix
+PIDFILE="${RUN_DIR}/duo-unix.pid"
+mkdir -p "$LOG_DIR"
+exec >>"${LOG_DIR}/duo-unix.log" 2>&1
+
+export CONFIG="${JOB_DIR}/config/config.yml"
+
+case $1 in
+
+  start)
+    mkdir -p $RUN_DIR
+    
+    if [[ -f "$PIDFILE" ]]; then 
+      PID=$(head -1 "$PIDFILE")
+      test -n "$PID" && test -e "proc/${PID}" && exit 1
+      rm -f "$PIDFILE"
+    fi
+
+    echo "$(date) starting up duo-unix (pid $$)"
+    echo $$ > "$PIDFILE"
+    exec "${PACKAGE_DIR}/bin/duo-unix"
+    ;;
+
+  stop)
+    echo "$(date) shutting down duo-unix"
+    PID=$(head -1 "$PIDFILE")
+    if [[ -n "$PID" ]]; then
+      kill "$PID" || true
+      while [ -e "/proc/${PID}" ]; do sleep 0.1; done
+    fi
+    rm -f "$PIDFILE"
+    ;;
+
+  *)
+    echo "Usage: ctl {start|stop}" 
+    exit 1
+    ;;
+
+esac
+exit 0

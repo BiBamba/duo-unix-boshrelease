@@ -1,0 +1,11 @@
+<%
+require 'json' 
+-%>
+
+duo:
+  ikey: "<%= p('duo.ikey') %>"
+  skey: "<%= p('duo.skey') %>"
+  host: "<%= p('duo.host') %>"
+  failmode: "<%= p('duo.failmode', 'safe') %>"
+  pushinfo: "<%= p('duo.pushinfo', 'yes') %>"
+  autopush: "<%= p('duo.autopush', 'yes') %>"
