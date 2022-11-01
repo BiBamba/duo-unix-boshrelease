@@ -1,1 +1,4 @@
-set -e
+#!/bin/bash
+set -ex
+
+cp -a libssl/libssl-dev_1.1.1f-1ubuntu2.16_amd64.deb ${BOSH_INSTALL_TARGET}/

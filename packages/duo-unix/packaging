@@ -1,1 +1,10 @@
-set -e
+#!/bin/bash
+set -e -x
+
+tar xzf duo-unix/duo_unix-2.0.0.tar.gz
+pushd duo_unix-2.0.0
+ ./configure --with-pam --prefix=${BOSH_INSTALL_TARGET}
+
+  make
+  make install
+popd

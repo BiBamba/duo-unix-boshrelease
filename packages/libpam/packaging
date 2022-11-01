@@ -1,1 +1,4 @@
-set -e
+#!/bin/bash
+set -ex
+
+cp -a libpam/libpam0g-dev_1.1.8-3.6ubuntu2_amd64.deb ${BOSH_INSTALL_TARGET}/

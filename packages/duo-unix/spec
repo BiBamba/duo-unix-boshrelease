@@ -6,4 +6,4 @@ dependencies:
 - libpam # libpam-dev
 
 files:
-- duo-unix/duo_unix-1.12.1.tar.gz  # https://dl.duosecurity.com/duo_unix-latest.tar.gz
+- duo-unix/duo_unix-2.0.0.tar.gz  # https://dl.duosecurity.com/duo_unix-latest.tar.gz
